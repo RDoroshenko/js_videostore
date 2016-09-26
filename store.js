@@ -17,12 +17,12 @@ function statement(customer, movies) {
         }
         break;
       case "new":
-        thisAmount = r.days * 3;
+        thisAmount = rental.days * 3;
         break;
       case "childrens":
         thisAmount = 1.5;
         if (rental.days > 3) {
-          thisAmount += (r.days - 3) * 1.5;
+          thisAmount += (rental.days - 3) * 1.5;
         }
         break;
     }
