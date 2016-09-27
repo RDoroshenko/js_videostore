@@ -17,8 +17,7 @@ function statement(customer, movies, format) {
       }
 
       result += `Amount owed is ${getTotalAmount(customer, movies)}\n`;
-      result += `You earned ${_getTotalFrequentRentalPoints(customer)} frequent renter points\n`;
-
+      result += `You earned ${getTotalFrequentRentalPoints(customer, movies)} frequent renter points\n`;
       return result;
   }
   
@@ -30,19 +29,11 @@ function statement(customer, movies, format) {
       }
       result += '</table>\n';
       result += `<p>Amount owed is <em>${getTotalAmount(customer, movies)}</em></p>\n`;
-      result += `<p>You earned <em>${_getTotalFrequentRentalPoints(customer)}</em> frequent renter points</p>`;
-
+      result += `<p>You earned <em>${getTotalFrequentRentalPoints(customer, movies)}</em> frequent renter points</p>`;
       return result;
   }
 
-  function _getTotalFrequentRentalPoints(customer) {
-        let totalfrequentRenterPoints = 0;
-        for (let rental of customer.rentals) {
-            totalfrequentRenterPoints += getFrequentRentalPoints(rental, movies);
-        }
-        return totalfrequentRenterPoints;
-    }
-}
+  }
 
 function movieFor(rental, movies) {
     return movies[rental.movieID]
