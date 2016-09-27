@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 function statement(customer, movies) {
   let result = `Rental Record for ${customer.name}\n`;
@@ -7,7 +7,6 @@ function statement(customer, movies) {
     result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
   }
 
-  // add footer lines
   result += `Amount owed is ${getTotalAmount(customer)}\n`;
   result += `You earned ${getTotalFrequentRentalPoints(customer)} frequent renter points\n`;
 
@@ -72,7 +71,7 @@ let customer = {
     "movieID": "F002",
     "days": 1
   }, ]
-}
+};
 
 let movies = {
   "F001": {
@@ -84,6 +83,6 @@ let movies = {
     "code": "regular"
   },
   // etc
-}
+};
 
-console.log(statement(customer, movies))
+console.log(statement(customer, movies));
