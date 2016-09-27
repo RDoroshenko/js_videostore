@@ -12,10 +12,7 @@ function statement(customer, movies) {
     result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
   }
 
-  let totalAmount = 0;
-  for (let rental of customer.rentals) {
-    totalAmount += getAmount(rental);
-  }
+  let totalAmount = getTotalAmount(customer);
 
   // add footer lines
   result += `Amount owed is ${totalAmount}\n`;
@@ -54,6 +51,14 @@ function statement(customer, movies) {
 
   function getFrequentRentalPoints (rental) {
     return (movieFor(rental).code === "new" && rental.days > 2) ? 2 : 1;
+  }
+
+  function getTotalAmount (customer) {
+    let totalAmount = 0;
+    for (let rental of customer.rentals) {
+      totalAmount += getAmount(rental);
+    }
+    return totalAmount
   }
 }
 
