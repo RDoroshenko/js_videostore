@@ -1,16 +1,22 @@
 "use strict";
 
-function statement(customer, movies) {
-  let result = `Rental Record for ${customer.name}\n`;
-
-  for (let rental of customer.rentals) {
-    result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
+function statement(customer, movies, format) {
+  if (format === 'text') {
+    return statementText();
   }
+    
+  function statementText() {
+      let result = `Rental Record for ${customer.name}\n`;
 
-  result += `Amount owed is ${getTotalAmount(customer)}\n`;
-  result += `You earned ${getTotalFrequentRentalPoints(customer)} frequent renter points\n`;
+      for (let rental of customer.rentals) {
+          result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
+      }
 
-  return result;
+      result += `Amount owed is ${getTotalAmount(customer)}\n`;
+      result += `You earned ${getTotalFrequentRentalPoints(customer)} frequent renter points\n`;
+
+      return result;
+  }  
 
   function movieFor(rental) {
     return movies[rental.movieID]
@@ -85,4 +91,4 @@ let movies = {
   // etc
 };
 
-console.log(statement(customer, movies));
+console.log(statement(customer, movies, 'text'));
