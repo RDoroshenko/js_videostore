@@ -50,10 +50,7 @@ function statement(customer, movies) {
   }
 
   function getFrequentRentalPoints (rental) {
-    let movie = movieFor(rental)
-    //add frequent renter points
-    // add bonus for a two day new release rental
-    return (movie.code === "new" && rental.days > 2) ? 2 : 1;
+    return (movieFor(rental).code === "new" && rental.days > 2) ? 2 : 1;
   }
 }
 
