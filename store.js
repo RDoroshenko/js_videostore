@@ -16,7 +16,7 @@ function statement(customer, movies, format) {
           result += `\t${movieFor(rental, movies).title}\t${getAmount(rental, movies)}\n`;
       }
 
-      result += `Amount owed is ${_getTotalAmount(customer)}\n`;
+      result += `Amount owed is ${getTotalAmount(customer, movies)}\n`;
       result += `You earned ${_getTotalFrequentRentalPoints(customer)} frequent renter points\n`;
 
       return result;
@@ -29,27 +29,19 @@ function statement(customer, movies, format) {
           result += `<tr><td>${movieFor(rental, movies).title}</td><td>${getAmount(rental, movies)}</td></tr>\n`;
       }
       result += '</table>\n';
-      result += `<p>Amount owed is <em>${_getTotalAmount(customer)}</em></p>\n`;
+      result += `<p>Amount owed is <em>${getTotalAmount(customer, movies)}</em></p>\n`;
       result += `<p>You earned <em>${_getTotalFrequentRentalPoints(customer)}</em> frequent renter points</p>`;
 
       return result;
   }
 
-  function _getTotalAmount (customer) {
-    let totalAmount = 0;
-    for (let rental of customer.rentals) {
-        totalAmount += getAmount(rental, movies);
-    }
-    return totalAmount;
-  }
-
   function _getTotalFrequentRentalPoints(customer) {
-    let totalfrequentRenterPoints = 0;
-    for (let rental of customer.rentals) {
-        totalfrequentRenterPoints += getFrequentRentalPoints(rental, movies);
+        let totalfrequentRenterPoints = 0;
+        for (let rental of customer.rentals) {
+            totalfrequentRenterPoints += getFrequentRentalPoints(rental, movies);
+        }
+        return totalfrequentRenterPoints;
     }
-    return totalfrequentRenterPoints;
-  }
 }
 
 function movieFor(rental, movies) {
@@ -82,6 +74,22 @@ function getAmount(rental, movies){
 
 function getFrequentRentalPoints (rental, movies) {
     return (movieFor(rental, movies).code === "new" && rental.days > 2) ? 2 : 1;
+}
+
+function getTotalAmount (customer, movies) {
+    let totalAmount = 0;
+    for (let rental of customer.rentals) {
+        totalAmount += getAmount(rental, movies);
+    }
+    return totalAmount;
+}
+
+function getTotalFrequentRentalPoints(customer, movies) {
+    let totalfrequentRenterPoints = 0;
+    for (let rental of customer.rentals) {
+        totalfrequentRenterPoints += getFrequentRentalPoints(rental, movies);
+    }
+    return totalfrequentRenterPoints;
 }
 
 let customer = {
