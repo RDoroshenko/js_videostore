@@ -13,7 +13,7 @@ function statement(customer, movies, format) {
     let result = `Rental Record for ${customer.name}\n`;
 
       for (let rental of customer.rentals) {
-          result += `\t${movieFor(rental, movies).title}\t${_getAmount(rental)}\n`;
+          result += `\t${movieFor(rental, movies).title}\t${getAmount(rental, movies)}\n`;
       }
 
       result += `Amount owed is ${_getTotalAmount(customer)}\n`;
@@ -26,37 +26,13 @@ function statement(customer, movies, format) {
       let result = `<h1>Rental Record for ${customer.name}</h1>\n`;
       result += '<table>\n';
       for (let rental of customer.rentals) {
-          result += `<tr><td>${movieFor(rental, movies).title}</td><td>${_getAmount(rental)}</td></tr>\n`;
+          result += `<tr><td>${movieFor(rental, movies).title}</td><td>${getAmount(rental, movies)}</td></tr>\n`;
       }
       result += '</table>\n';
       result += `<p>Amount owed is <em>${_getTotalAmount(customer)}</em></p>\n`;
       result += `<p>You earned <em>${_getTotalFrequentRentalPoints(customer)}</em> frequent renter points</p>`;
 
       return result;
-  }
-
-  function _getAmount(rental){
-    let thisAmount = 0;
-      let movie = movieFor(rental, movies);
-      // determine amount for each movie
-    switch (movie.code) {
-      case "regular":
-        thisAmount = 2;
-        if (rental.days > 2) {
-          thisAmount += (rental.days - 2) * 1.5;
-        }
-        break;
-      case "new":
-        thisAmount = rental.days * 3;
-        break;
-      case "childrens":
-        thisAmount = 1.5;
-        if (rental.days > 3) {
-          thisAmount += (rental.days - 3) * 1.5;
-        }
-        break;
-    }
-    return thisAmount;
   }
 
   function _getFrequentRentalPoints (rental) {
@@ -66,7 +42,7 @@ function statement(customer, movies, format) {
   function _getTotalAmount (customer) {
     let totalAmount = 0;
     for (let rental of customer.rentals) {
-      totalAmount += _getAmount(rental);
+        totalAmount += getAmount(rental, movies);
     }
     return totalAmount;
   }
@@ -82,6 +58,30 @@ function statement(customer, movies, format) {
 
 function movieFor(rental, movies) {
     return movies[rental.movieID]
+}
+
+function getAmount(rental, movies){
+    let thisAmount = 0;
+    let movie = movieFor(rental, movies);
+    // determine amount for each movie
+    switch (movie.code) {
+        case "regular":
+            thisAmount = 2;
+            if (rental.days > 2) {
+                thisAmount += (rental.days - 2) * 1.5;
+            }
+            break;
+        case "new":
+            thisAmount = rental.days * 3;
+            break;
+        case "childrens":
+            thisAmount = 1.5;
+            if (rental.days > 3) {
+                thisAmount += (rental.days - 3) * 1.5;
+            }
+            break;
+    }
+    return thisAmount;
 }
 
 let customer = {
