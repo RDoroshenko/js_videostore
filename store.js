@@ -16,7 +16,20 @@ function statement(customer, movies, format) {
       result += `You earned ${getTotalFrequentRentalPoints(customer)} frequent renter points\n`;
 
       return result;
-  }  
+  }
+  
+  function statementHtml() {
+      let result = `<h1>Rental Record for ${customer.name}</h1>`;
+      result += '<table>';
+      for (let rental of customer.rentals) {
+          result += `<tr><td>${movieFor(rental).title}</td><td>${getAmount(rental)}</td></tr>`;
+      }
+      result += '</table>';
+      result += `<p>Amount owed is <em>${getTotalAmount(customer)}</em></p>`;
+      result += `<p>You earned <em>${getTotalFrequentRentalPoints(customer)}</em> frequent renter points</p>`;
+
+      return result;
+  }
 
   function movieFor(rental) {
     return movies[rental.movieID]
