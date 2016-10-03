@@ -18,6 +18,7 @@ class Rental {
     get days() {return this._data.days; }
     get movieID() {return this._data.movieID; }
     get movie() {return this._movies[this.movieID]}
+    get FrequentRentalPoints() {return (this.movie.code === "new" && this.days > 2) ? 2 : 1;}
 }
 
 function statement(customerArg, movies, format) {
