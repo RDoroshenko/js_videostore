@@ -6,7 +6,7 @@ class Customer {
     }
 
     get name() {return this._data.name; }
-    get rentals() {return this._data.rentals; }
+    get rentals() {return this._data.rentals.map (rental => new Rental(rental)); }
 }
 
 class Rental {
