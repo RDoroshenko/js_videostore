@@ -9,6 +9,14 @@ class Customer {
     get rentals() {return this._data.rentals; }
 }
 
+class Rental {
+    constructor(data){
+        this._data=data;
+    }
+    get days() {return this._data.days; }
+    get movieID() {return this._data.movieID; }
+}
+
 function statement(customerArg, movies, format) {
   const customer = new Customer(customerArg);
     if (format === 'text') {
