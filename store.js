@@ -19,6 +19,29 @@ class Rental {
     get movieID() {return this._data.movieID; }
     get movie() {return this._movies[this.movieID]}
     get FrequentRentalPoints() {return (this.movie.code === "new" && this.days > 2) ? 2 : 1;}
+    get Amount() {
+        let thisAmount = 0;
+        let movie = this.movie;
+        // determine amount for each movie
+        switch (movie.code) {
+            case "regular":
+                thisAmount = 2;
+                if (this.days > 2) {
+                    thisAmount += (this.days - 2) * 1.5;
+                }
+                break;
+            case "new":
+                thisAmount = this.days * 3;
+                break;
+            case "childrens":
+                thisAmount = 1.5;
+                if (this.days > 3) {
+                    thisAmount += (this.days - 3) * 1.5;
+                }
+                break;
+        }
+        return thisAmount;
+    }
 }
 
 function statement(customerArg, movies, format) {
