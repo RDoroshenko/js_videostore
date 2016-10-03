@@ -95,11 +95,7 @@ function statement(customerArg, movies, format) {
 }
 
 function getTotalAmount (customer) {
-    let totalAmount = 0;
-    for (let rental of customer.rentals) {
-        totalAmount += rental.Amount;
-    }
-    return totalAmount;
+    customer.TotalAmount;
 }
 
 let customer = {
