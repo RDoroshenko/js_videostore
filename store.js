@@ -16,11 +16,7 @@ class Customer {
         return totalfrequentRenterPoints;
     }
     get TotalAmount() {
-        let totalAmount = 0;
-        for (let rental of this.rentals) {
-            totalAmount += rental.Amount;
-        }
-        return totalAmount;
+        return this.rentals.reduce((total, rental) => total + rental.Amount, 0);
     }
 }
 
@@ -118,4 +114,4 @@ let movies = {
 };
 
 console.log(statement(customer, movies, 'text'));
-console.log(statement(customer, movies, 'html'));
+//console.log(statement(customer, movies, 'html'));
