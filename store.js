@@ -1,24 +1,27 @@
 "use strict";
 
 class Customer {
-    constructor (data) {
+    constructor (data, movies) {
         this._data = data;
+        this._movies = movies;
     }
 
     get name() {return this._data.name; }
-    get rentals() {return this._data.rentals.map (rental => new Rental(rental)); }
+    get rentals() {return this._data.rentals.map (rental => new Rental(rental, this._movies)); }
 }
 
 class Rental {
-    constructor(data){
+    constructor(data, movies){
         this._data=data;
+        this._movies = movies;
     }
     get days() {return this._data.days; }
     get movieID() {return this._data.movieID; }
+    get movie() {return this._movies[this.movieID]}
 }
 
 function statement(customerArg, movies, format) {
-  const customer = new Customer(customerArg);
+  const customer = new Customer(customerArg, movies);
     if (format === 'text') {
     return statementText();
   }
@@ -53,8 +56,8 @@ function statement(customerArg, movies, format) {
 
 }
 
-function movieFor(rental, movies) {
-    return movies[rental.movieID]
+function movieFor(rental) {
+    return rental.movie;
 }
 
 function getAmount(rental, movies){
