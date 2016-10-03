@@ -10,10 +10,17 @@ class Customer {
     get rentals() {return this._data.rentals.map (rental => new Rental(rental, this._movies)); }
     get TotalFrequentRentalPoints() {
         let totalfrequentRenterPoints = 0;
-        for (let rental of customer.rentals) {
+        for (let rental of this.rentals) {
             totalfrequentRenterPoints += rental.FrequentRentalPoints;
         }
         return totalfrequentRenterPoints;
+    }
+    get TotalAmount() {
+        let totalAmount = 0;
+        for (let rental of this.rentals) {
+            totalAmount += rental.Amount;
+        }
+        return totalAmount;
     }
 }
 
