@@ -75,7 +75,7 @@ function statement(customerArg, movies, format) {
           result += `\t${rental.movie.title}\t${rental.Amount}\n`;
       }
 
-      result += `Amount owed is ${getTotalAmount(customer, movies)}\n`;
+      result += `Amount owed is ${customer.TotalAmount}\n`;
       result += `You earned ${customer.TotalFrequentRentalPoints} frequent renter points\n`;
       return result;
   }
@@ -87,15 +87,11 @@ function statement(customerArg, movies, format) {
           result += `<tr><td>${rental.movie.title}</td><td>${rental.Amount}</td></tr>\n`;
       }
       result += '</table>\n';
-      result += `<p>Amount owed is <em>${getTotalAmount(customer, movies)}</em></p>\n`;
+      result += `<p>Amount owed is <em>${customer.TotalAmount}</em></p>\n`;
       result += `<p>You earned <em>${customer.TotalFrequentRentalPoints}</em> frequent renter points</p>`;
       return result;
   }
 
-}
-
-function getTotalAmount (customer) {
-    customer.TotalAmount;
 }
 
 let customer = {
