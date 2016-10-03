@@ -96,11 +96,7 @@ function getTotalAmount (customer) {
 }
 
 function getTotalFrequentRentalPoints(customer) {
-    let totalfrequentRenterPoints = 0;
-    for (let rental of customer.rentals) {
-        totalfrequentRenterPoints += rental.FrequentRentalPoints;
-    }
-    return totalfrequentRenterPoints;
+    customer.TotalFrequentRentalPoints;
 }
 
 let customer = {
