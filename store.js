@@ -82,7 +82,7 @@ function getAmount(rental){
 }
 
 function getFrequentRentalPoints (rental) {
-    return (rental.movie.code === "new" && rental.days > 2) ? 2 : 1;
+    return rental.FrequentRentalPoints;
 }
 
 function getTotalAmount (customer, movies) {
