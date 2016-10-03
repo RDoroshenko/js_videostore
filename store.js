@@ -69,7 +69,7 @@ function statement(customerArg, movies, format) {
       }
 
       result += `Amount owed is ${getTotalAmount(customer, movies)}\n`;
-      result += `You earned ${getTotalFrequentRentalPoints(customer, movies)} frequent renter points\n`;
+      result += `You earned ${customer.TotalFrequentRentalPoints} frequent renter points\n`;
       return result;
   }
   
@@ -81,7 +81,7 @@ function statement(customerArg, movies, format) {
       }
       result += '</table>\n';
       result += `<p>Amount owed is <em>${getTotalAmount(customer, movies)}</em></p>\n`;
-      result += `<p>You earned <em>${getTotalFrequentRentalPoints(customer, movies)}</em> frequent renter points</p>`;
+      result += `<p>You earned <em>${customer.TotalFrequentRentalPoints}</em> frequent renter points</p>`;
       return result;
   }
 
@@ -93,10 +93,6 @@ function getTotalAmount (customer) {
         totalAmount += rental.Amount;
     }
     return totalAmount;
-}
-
-function getTotalFrequentRentalPoints(customer) {
-    customer.TotalFrequentRentalPoints;
 }
 
 let customer = {
