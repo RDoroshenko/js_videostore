@@ -9,8 +9,9 @@ class Customer {
     get rentals() {return this._data.rentals; }
 }
 
-function statement(customer, movies, format) {
-  if (format === 'text') {
+function statement(customerArg, movies, format) {
+  const customer = new Customer(customerArg);
+    if (format === 'text') {
     return statementText();
   }
 
