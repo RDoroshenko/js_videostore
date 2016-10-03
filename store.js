@@ -81,10 +81,6 @@ function getAmount(rental){
     return thisAmount;
 }
 
-function getFrequentRentalPoints (rental) {
-    return rental.FrequentRentalPoints;
-}
-
 function getTotalAmount (customer, movies) {
     let totalAmount = 0;
     for (let rental of customer.rentals) {
@@ -93,10 +89,10 @@ function getTotalAmount (customer, movies) {
     return totalAmount;
 }
 
-function getTotalFrequentRentalPoints(customer, movies) {
+function getTotalFrequentRentalPoints(customer) {
     let totalfrequentRenterPoints = 0;
     for (let rental of customer.rentals) {
-        totalfrequentRenterPoints += getFrequentRentalPoints(rental, movies);
+        totalfrequentRenterPoints += rental.FrequentRentalPoints;
     }
     return totalfrequentRenterPoints;
 }
