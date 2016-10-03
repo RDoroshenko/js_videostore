@@ -81,27 +81,7 @@ function statement(customerArg, movies, format) {
 }
 
 function getAmount(rental){
-    let thisAmount = 0;
-    let movie = rental.movie;
-    // determine amount for each movie
-    switch (movie.code) {
-        case "regular":
-            thisAmount = 2;
-            if (rental.days > 2) {
-                thisAmount += (rental.days - 2) * 1.5;
-            }
-            break;
-        case "new":
-            thisAmount = rental.days * 3;
-            break;
-        case "childrens":
-            thisAmount = 1.5;
-            if (rental.days > 3) {
-                thisAmount += (rental.days - 3) * 1.5;
-            }
-            break;
-    }
-    return thisAmount;
+    rental.Amount;
 }
 
 function getTotalAmount (customer, movies) {
